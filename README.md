@@ -63,3 +63,12 @@ pytest                             # 执行全部用例
 pytest -m smoke                    # 按标记执行（smoke / regression）
 python run.py                      # 一键跑测并生成/打开 Allure 报告
 ```
+
+## 注意事项
+
+- **登录态安全**：订单等需登录场景由 `tools/save_cookies.py` 一次性扫码生成 `cookies.json` 并由 `conftest.py` 自动注入浏览器 context；Cookie 文件已加入 `.gitignore`，账号凭证不入库、不共享，团队成员各自生成即可。
+- **环境适配成本低**：框架默认复用本机已安装的 Chrome（`channel="chrome"`），无需 `playwright install` 下载浏览器内核；CI 或纯净环境可一键切换为标准浏览器安装模式。
+- **改版维护成本收敛**：页面元素定位器统一登记在 `pages/__init__.py`，页面对象只表达“页面上能做什么”，业务流程在 `actions/` 层组合——页面改版时只需更新定位器常量，业务与用例层完全不动，将维护影响面收敛到单点。
+- **数据驱动、零代码加场景**：新增测试场景只需在 `config/` 对应 JSON 中追加一条数据并声明期望行为，用例自动参数化执行，业务逻辑无需改动。
+- **失败可追溯**：`pytest.ini` 默认收集 Allure 结果到 `reports/` 并保留失败 Trace，叠加运行日志与步骤截图，定位失败环节一目了然，便于 CI 归档与回归分析。
+- **用例分级、按需执行**：`smoke` / `regression` 标记支持分层运行（如 `pytest -m smoke`），日常冒烟与发版前全量回归可灵活切换，平衡执行时长与覆盖度。
