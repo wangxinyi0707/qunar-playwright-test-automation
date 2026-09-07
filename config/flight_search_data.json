@@ -1,0 +1,42 @@
+[
+  {
+    "id": "normal",
+    "desc": "正常搜索：北京→上海",
+    "from": "北京",
+    "to": "上海",
+    "date": "2026-08-30",
+    "expect": "to_list",
+    "expect_code_from": "BJS",
+    "expect_code_to": "SHA"
+  },
+  {
+    "id": "same_city",
+    "desc": "同城搜索（异常）：北京→北京，不跳转",
+    "from": "北京",
+    "to": "北京",
+    "date": "",
+    "expect": "no_jump",
+    "expect_code_from": "",
+    "expect_code_to": ""
+  },
+  {
+    "id": "past_date",
+    "desc": "过去日期（边界）：自动纠正为今天，不跳转",
+    "from": "北京",
+    "to": "上海",
+    "date": "2020-01-01",
+    "expect": "corrected",
+    "expect_code_from": "",
+    "expect_code_to": ""
+  },
+  {
+    "id": "no_input",
+    "desc": "不输入（默认值 fuzzy）：跳 fuzzy 页并带默认城市",
+    "from": "",
+    "to": "",
+    "date": "",
+    "expect": "fuzzy",
+    "expect_code_from": "",
+    "expect_code_to": ""
+  }
+]

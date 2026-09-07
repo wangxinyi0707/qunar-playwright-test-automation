@@ -1,0 +1,32 @@
+[
+  {
+    "id": "success",
+    "desc": "正常下单：填写乘机人+联系人后提交，应生成订单",
+    "from": "北京",
+    "from_code": "BJS",
+    "to": "上海",
+    "to_code": "SHA",
+    "date": "2026-08-30",
+    "fill_passenger": true,
+    "name": "张三",
+    "cert_no": "110101199001011234",
+    "contact_name": "李四",
+    "contact_phone": "13800138000",
+    "expect": "order_created"
+  },
+  {
+    "id": "missing_passenger",
+    "desc": "异常：不填乘机人直接提交，应出现校验提示且未生成订单",
+    "from": "北京",
+    "from_code": "BJS",
+    "to": "上海",
+    "to_code": "SHA",
+    "date": "2026-08-30",
+    "fill_passenger": false,
+    "name": "",
+    "cert_no": "",
+    "contact_name": "李四",
+    "contact_phone": "13800138000",
+    "expect": "validate_error"
+  }
+]

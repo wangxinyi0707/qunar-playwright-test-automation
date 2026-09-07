@@ -1,0 +1,14 @@
+[
+  {
+    "id": "has_order",
+    "desc": "有订单：登录账号下应有订单列表，且可查到用例2生成的订单号",
+    "expect_empty": false,
+    "order_no": ""
+  },
+  {
+    "id": "no_order",
+    "desc": "无订单：使用无订单的账号/过滤条件，应出现空态提示",
+    "expect_empty": true,
+    "order_no": ""
+  }
+]
